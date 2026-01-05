@@ -1,2 +1,1 @@
-# E-commerce-shopkart
-QuickBite is a food delivery app that lets users browse restaurants, explore menus, add items to cart, and place orders with live tracking. Built with clean, scalable architecture, it offers a smooth and responsive experience across devices.
+This project is a responsive e-commerce website developed using HTML and CSS. It features a clean user interface with product listings, images, pricing, and a contact section. The website focuses on smooth navigation, proper layout alignment, and an enhanced user experience.
