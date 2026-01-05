@@ -44,9 +44,8 @@ Run the project by opening index.html in any modern web browser
 
 The objective of this project is to practice front-end web development concepts and create a visually appealing e-commerce interface using only HTML and CSS.
 
-📸 Screenshots
 
-Add screenshots of your website here
+
 
 📌 Future Enhancements
 
