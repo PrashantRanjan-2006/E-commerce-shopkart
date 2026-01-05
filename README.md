@@ -34,7 +34,7 @@ E-Commerce-Website/
 
 Download or clone this repository
 
-git clone https://github.com/your-username/e-commerce-website.git
+git clone - https://shopkkart.netlify.app/
 
 Open the project folder
 
