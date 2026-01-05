@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - ShopKart | Your Favorite E-Commerce Store</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet (uses same login.css with additional signup styles) -->
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="./signup.css">
+</head>
+<body>
+    <!-- ========================================
+         Animated Background Shapes
+    ======================================== -->
+    <div class="bg-animation">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+        <div class="bg-shape bg-shape-4"></div>
+    </div>
+
+    <!-- ========================================
+         Floating Particles Effect
+    ======================================== -->
+    <div class="particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span>
+    </div>
+
+    <!-- ========================================
+         Main Signup Container
+    ======================================== -->
+    <main class="login-page signup-page">
+        <div class="login-container signup-container">
+            
+            <!-- ========================================
+                 Left Panel - Brand Information
+            ======================================== -->
+            <aside class="brand-panel">
+                <div class="brand-content">
+                    <!-- Logo Section -->
+                    <div class="brand-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h1 class="logo-text">ShopKart</h1>
+                    </div>
+                    
+                    <!-- Tagline -->
+                    <p class="brand-tagline">
+                        Join thousands of happy shoppers and discover amazing deals every day!
+                    </p>
+                    
+                    <!-- Benefits List -->
+                    <ul class="brand-features signup-benefits">
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-gift"></i></span>
+                            <div class="feature-text">
+                                <strong>Welcome Bonus</strong>
+                                <span>Get ₹500 off on your first order</span>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-tags"></i></span>
+                            <div class="feature-text">
+                                <strong>Exclusive Deals</strong>
+                                <span>Member-only discounts & offers</span>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-bolt"></i></span>
+                            <div class="feature-text">
+                                <strong>Early Access</strong>
+                                <span>Be first to shop new arrivals</span>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-heart"></i></span>
+                            <div class="feature-text">
+                                <strong>Wishlist & Tracking</strong>
+                                <span>Save favorites & track orders</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <!-- Testimonial -->
+                    <div class="brand-testimonial">
+                        <div class="testimonial-content">
+                            <p>"Best shopping experience ever! Great products and super fast delivery."</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Customer">
+                                <div>
+                                    <strong>Priya Sharma</strong>
+                                    <span>Verified Buyer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ========================================
+                 Right Panel - Signup Form
+            ======================================== -->
+            <section class="form-panel">
+                <div class="form-wrapper signup-form-wrapper">
+                    <!-- Mobile Logo (visible on small screens) -->
+                    <div class="mobile-logo">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>ShopKart</span>
+                    </div>
+                    
+                    <!-- Form Header -->
+                    <header class="form-header">
+                        <h2>Create Account</h2>
+                        <p>Join ShopKart and start shopping today</p>
+                    </header>
+
+                    <!-- Signup Form -->
+                    <form action="products.html" method="get" class="login-form signup-form">
+                        <!-- Name Row (First & Last) -->
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="firstName">First Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="firstName" 
+                                        name="firstName" 
+                                        placeholder="First name"
+                                        required
+                                        autocomplete="given-name"
+                                    >
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="lastName" 
+                                        name="lastName" 
+                                        placeholder="Last name"
+                                        required
+                                        autocomplete="family-name"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="Enter your email"
+                                    required
+                                    autocomplete="email"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Phone Input -->
+                        <div class="input-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone input-icon"></i>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    placeholder="Enter your phone number"
+                                    required
+                                    autocomplete="tel"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Create a password"
+                                    required
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                >
+                            </div>
+                            <span class="input-hint">Must be at least 8 characters</span>
+                        </div>
+
+                        <!-- Confirm Password Input -->
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    name="confirmPassword" 
+                                    placeholder="Confirm your password"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Terms & Conditions -->
+                        <div class="form-options terms-options">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">
+                                    I agree to the <a href="#" class="terms-link">Terms of Service</a> 
+                                    and <a href="#" class="terms-link">Privacy Policy</a>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Newsletter Opt-in -->
+                        <div class="form-options newsletter-options">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Send me exclusive offers and updates</span>
+                            </label>
+                        </div>
+
+                        <!-- Signup Button -->
+                        <button type="submit" class="login-btn signup-btn">
+                            <span class="btn-text">Create Account</span>
+                            <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                        </button>
+
+                        <!-- Divider -->
+                        <div class="divider">
+                            <span>or sign up with</span>
+                        </div>
+
+                        <!-- Social Signup Buttons -->
+                        <div class="social-login">
+                            <a href="products.html" class="social-btn google">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </a>
+                            <a href="products.html" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="products.html" class="social-btn apple">
+                                <i class="fab fa-apple"></i>
+                                <span>Apple</span>
+                            </a>
+                        </div>
+
+                        <!-- Login Link -->
+                        <p class="signup-text login-text">
+                            Already have an account? 
+                            <a href="login.html" class="signup-link">Sign In</a>
+                        </p>
+                    </form>
+
+                    <!-- Back to Home -->
+                    <a href="hello.html" class="back-home">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Home</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ========================================
+         Footer
+    ======================================== -->
+    <footer class="login-footer">
+        <p>&copy; 2026 ShopKart. All rights reserved.</p>
+        <nav class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Help</a>
+        </nav>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1598 @@
+/* ========================================
+   ShopKart E-Commerce Login Page Styles
+   A modern, responsive login page design
+   Author: ShopKart Team
+   Version: 1.0
+======================================== */
+
+/* ========================================
+   CSS Custom Properties (Variables)
+======================================== */
+:root {
+    /* Primary Colors - Vibrant Teal/Cyan Theme */
+    --primary-color: #00b4d8;
+    --primary-dark: #0096c7;
+    --secondary-color: #ff6b9d;
+    
+    /* Accent Colors */
+    --accent-color: #ffd166;
+    --success-color: #06d6a0;
+    --warning-color: #ff9f1c;
+    
+    /* Neutral Colors */
+    --text-dark: #1a1a2e;
+    --text-muted: #4a5568;
+    --text-light: #94a3b8;
+    --white: #ffffff;
+    --black: #000000;
+    
+    /* Background Colors */
+    --bg-light: #f0fdfa;
+    --bg-lighter: #e0f2fe;
+    --bg-card: rgba(255, 255, 255, 0.98);
+    
+    /* Border & Shadow */
+    --border-color: #e0f2fe;
+    --shadow-sm: 0 2px 4px rgba(0, 180, 216, 0.1);
+    --shadow-md: 0 8px 25px rgba(0, 180, 216, 0.15);
+    --shadow-lg: 0 20px 60px rgba(0, 180, 216, 0.2);
+    --shadow-xl: 0 30px 100px rgba(0, 180, 216, 0.25);
+    
+    /* Gradients - Stunning Teal to Pink/Coral */
+    --gradient-primary: linear-gradient(135deg, #00b4d8 0%, #0077b6 50%, #023e8a 100%);
+    --gradient-secondary: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+    --gradient-dark: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+    
+    /* Typography */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --radius-full: 50%;
+}
+
+/* ========================================
+   CSS Reset & Base Styles
+======================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+body::-webkit-scrollbar{
+    scrollbar-width: none;
+}
+body {
+    font-family: var(--font-primary);
+    background: var(--gradient-primary);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-normal);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+input {
+    font-family: inherit;
+    border: none;
+    outline: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ========================================
+   Animated Background Shapes
+======================================== */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.bg-shape {
+    position: absolute;
+    border-radius: var(--radius-full);
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s infinite ease-in-out;
+}
+
+.bg-shape-1 {
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.5) 0%, rgba(0, 119, 182, 0.3) 100%);
+    top: -250px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.bg-shape-2 {
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(255, 107, 157, 0.5) 0%, rgba(196, 69, 105, 0.3) 100%);
+    bottom: -180px;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+.bg-shape-3 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(6, 214, 160, 0.4) 0%, rgba(0, 180, 216, 0.2) 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -10s;
+}
+
+.bg-shape-4 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(255, 209, 102, 0.4) 0%, rgba(255, 159, 28, 0.2) 100%);
+    bottom: 20%;
+    left: 10%;
+    animation-delay: -15s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-30px) rotate(5deg) scale(1.05);
+    }
+    50% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    75% {
+        transform: translateY(30px) rotate(-5deg) scale(0.95);
+    }
+}
+
+/* ========================================
+   Floating Particles Effect
+======================================== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particles span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(0, 180, 216, 0.4));
+    border-radius: var(--radius-full);
+    animation: rise 15s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.3), 0 0 30px rgba(255, 107, 157, 0.2);
+}
+
+.particles span:nth-child(1) { left: 5%; width: 8px; height: 8px; animation-delay: 0s; }
+.particles span:nth-child(2) { left: 15%; width: 12px; height: 12px; animation-delay: -2s; }
+.particles span:nth-child(3) { left: 25%; width: 6px; height: 6px; animation-delay: -4s; }
+.particles span:nth-child(4) { left: 35%; width: 14px; height: 14px; animation-delay: -6s; }
+.particles span:nth-child(5) { left: 45%; width: 10px; height: 10px; animation-delay: -8s; }
+.particles span:nth-child(6) { left: 55%; width: 8px; height: 8px; animation-delay: -10s; }
+.particles span:nth-child(7) { left: 65%; width: 16px; height: 16px; animation-delay: -12s; }
+.particles span:nth-child(8) { left: 75%; width: 6px; height: 6px; animation-delay: -14s; }
+.particles span:nth-child(9) { left: 85%; width: 12px; height: 12px; animation-delay: -16s; }
+.particles span:nth-child(10) { left: 95%; width: 10px; height: 10px; animation-delay: -18s; }
+.particles span:nth-child(11) { left: 10%; width: 8px; height: 8px; animation-delay: -1s; }
+.particles span:nth-child(12) { left: 90%; width: 14px; height: 14px; animation-delay: -3s; }
+
+@keyframes rise {
+    0% {
+        bottom: -50px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateX(50px) rotate(180deg);
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        bottom: 110%;
+        opacity: 0;
+        transform: translateX(-50px) rotate(360deg);
+    }
+}
+
+/* ========================================
+   Main Login Page Layout
+======================================== */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 650px;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl), 0 0 80px rgba(0, 180, 216, 0.15);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    animation: slideUp 0.8s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Left Panel - Brand Information
+======================================== */
+.brand-panel {
+    flex: 1;
+    background: var(--gradient-primary);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative overlay pattern */
+.brand-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.brand-content {
+    position: relative;
+    z-index: 1;
+    color: var(--white);
+}
+
+/* Logo */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-normal);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-logo:hover .logo-icon {
+    transform: rotate(10deg) scale(1.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Tagline */
+.brand-tagline {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 400px;
+}
+
+/* Feature List */
+.brand-features {
+    margin-bottom: 40px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-normal);
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.feature-item:hover {
+    transform: translateX(10px);
+}
+
+.feature-item:hover .feature-icon {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: var(--transition-normal);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-text strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.feature-text span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Stats */
+.brand-stats {
+    display: flex;
+    gap: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-item {
+    text-align: center;
+    transition: var(--transition-normal);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat-number i {
+    font-size: 1rem;
+    color: #ffd166;
+    margin-left: 3px;
+    filter: drop-shadow(0 0 5px rgba(255, 209, 102, 0.5));
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Brand Image */
+.brand-image {
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.brand-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: var(--transition-slow);
+}
+
+.brand-image:hover img {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   Right Panel - Login Form
+======================================== */
+.form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background: var(--white);
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Mobile Logo (hidden on desktop) */
+.mobile-logo {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: var(--font-display);
+}
+
+.mobile-logo i {
+    font-size: 2rem;
+}
+
+/* Form Header */
+.form-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-header h2 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Login Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Input Groups */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 18px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: var(--transition-normal);
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 16px 18px 16px 50px;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+    border: 2px solid #80deea;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    transition: var(--transition-normal);
+}
+
+.input-wrapper input::placeholder {
+    color: #4a7c82;
+}
+
+.input-wrapper input:focus {
+    background: linear-gradient(135deg, #b2ebf2 0%, #80deea 100%);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.2), 0 0 25px rgba(0, 180, 216, 0.15);
+}
+
+.input-wrapper input:focus + .input-icon,
+.input-wrapper:focus-within .input-icon {
+    color: var(--primary-color);
+}
+
+/* Form Options (Remember Me & Forgot Password) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
+/* Custom Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+    position: relative;
+}
+
+.checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: var(--white);
+    opacity: 0;
+    transform: scale(0);
+    transition: var(--transition-fast);
+}
+
+.checkbox-wrapper input:checked + .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-wrapper input:checked + .checkmark::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.checkbox-wrapper:hover .checkmark {
+    border-color: var(--primary-color);
+}
+
+/* Forgot Password Link */
+.forgot-link {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Login Button */
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 30px;
+    background: var(--gradient-primary);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-slow);
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 180, 216, 0.45), 0 0 20px rgba(0, 180, 216, 0.3);
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.login-btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    transition: var(--transition-normal);
+}
+
+.login-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.divider span {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+/* Social Login Buttons */
+.social-login {
+    display: flex;
+    gap: 12px;
+}
+
+.social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 15px;
+    background: var(--bg-lighter);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.social-btn i {
+    font-size: 1.1rem;
+}
+
+.social-btn.google:hover {
+    background: #fff;
+    border: 2px solid #ea4335;
+    color: #ea4335;
+    box-shadow: 0 8px 25px rgba(234, 67, 53, 0.25);
+    transform: translateY(-3px);
+}
+
+.social-btn.facebook:hover {
+    background: #1877f2;
+    color: var(--white);
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.35);
+    transform: translateY(-3px);
+}
+
+.social-btn.apple:hover {
+    background: var(--black);
+    color: var(--white);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
+}
+
+/* Signup Text */
+.signup-text {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+.signup-link {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.signup-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Back to Home Link */
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.back-home:hover {
+    color: var(--primary-color);
+}
+
+.back-home i {
+    transition: var(--transition-normal);
+}
+
+.back-home:hover i {
+    transform: translateX(-5px);
+}
+
+/* ========================================
+   Footer
+======================================== */
+.login-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+
+/* ========================================
+   Responsive Design - Large Desktop (1440px+)
+======================================== */
+@media (min-width: 1440px) {
+    .login-container {
+        max-width: 1300px;
+        min-height: 750px;
+    }
+    
+    .brand-panel {
+        padding: 60px;
+    }
+    
+    .logo-text {
+        font-size: 2.5rem;
+    }
+    
+    .brand-tagline {
+        font-size: 1.2rem;
+    }
+    
+    .feature-item {
+        padding: 18px 0;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .form-panel {
+        padding: 60px;
+    }
+    
+    .form-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .input-wrapper input {
+        padding: 18px 18px 18px 55px;
+        font-size: 1rem;
+    }
+    
+    .login-btn {
+        padding: 18px 35px;
+        font-size: 1.1rem;
+    }
+}
+
+/* ========================================
+   Responsive Design - Desktop (1200px - 1439px)
+======================================== */
+@media (max-width: 1439px) and (min-width: 1200px) {
+    .login-container {
+        max-width: 1100px;
+    }
+    
+    .brand-panel {
+        padding: 50px;
+    }
+    
+    .form-panel {
+        padding: 50px;
+    }
+}
+
+/* ========================================
+   Responsive Design - Tablet Landscape (1024px - 1199px)
+======================================== */
+@media (max-width: 1199px) and (min-width: 1025px) {
+    .login-container {
+        max-width: 1000px;
+    }
+    
+    .brand-panel {
+        padding: 45px;
+    }
+    
+    .form-panel {
+        padding: 45px;
+    }
+    
+    .brand-tagline {
+        font-size: 1rem;
+    }
+    
+    .brand-image {
+        display: none;
+    }
+}
+
+/* ========================================
+   Responsive Design - Tablet Portrait (768px - 1024px)
+======================================== */
+@media (max-width: 1024px) {
+    .login-container {
+        max-width: 900px;
+    }
+    
+    .brand-panel {
+        padding: 40px;
+        flex: 0.9;
+    }
+    
+    .form-panel {
+        padding: 40px;
+        flex: 1.1;
+    }
+    
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .logo-text {
+        font-size: 1.8rem;
+    }
+    
+    .brand-tagline {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+    
+    .feature-item {
+        padding: 12px 0;
+    }
+    
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .feature-text strong {
+        font-size: 0.9rem;
+    }
+    
+    .feature-text span {
+        font-size: 0.8rem;
+    }
+    
+    .brand-stats {
+        gap: 20px;
+        padding-top: 25px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .brand-image {
+        display: none;
+    }
+    
+    .form-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .input-wrapper input {
+        padding: 14px 14px 14px 48px;
+    }
+}
+
+/* ========================================
+   Responsive Design - Small Tablet / Large Phone (600px - 767px)
+======================================== */
+@media (max-width: 767px) {
+    .login-page {
+        padding: 20px;
+        padding-bottom: 80px;
+    }
+    
+    .login-container {
+        flex-direction: column;
+        min-height: auto;
+        max-width: 500px;
+        border-radius: var(--radius-lg);
+    }
+    
+    .brand-panel {
+        display: none;
+    }
+    
+    .form-panel {
+        padding: 40px 35px;
+        border-radius: var(--radius-lg);
+    }
+    
+    .mobile-logo {
+        display: flex;
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+    
+    .mobile-logo i {
+        font-size: 1.8rem;
+    }
+    
+    .form-header {
+        margin-bottom: 30px;
+    }
+    
+    .form-header h2 {
+        font-size: 1.7rem;
+    }
+    
+    .form-header p {
+        font-size: 0.95rem;
+    }
+    
+    .login-form {
+        gap: 18px;
+    }
+    
+    .input-wrapper input {
+        padding: 15px 15px 15px 48px;
+        font-size: 1rem;
+    }
+    
+    .login-btn {
+        padding: 15px 28px;
+        font-size: 1rem;
+    }
+    
+    .social-login {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .social-btn {
+        padding: 14px 12px;
+    }
+    
+    .social-btn span {
+        display: none;
+    }
+    
+    .social-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .login-footer {
+        position: relative;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .footer-links {
+        gap: 15px;
+    }
+}
+
+/* ========================================
+   Responsive Design - Mobile Portrait (480px - 599px)
+======================================== */
+@media (max-width: 599px) {
+    .login-page {
+        padding: 15px;
+        padding-bottom: 70px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .login-container {
+        max-width: 100%;
+        border-radius: var(--radius-md);
+    }
+    
+    .form-panel {
+        padding: 30px 25px;
+    }
+    
+    .mobile-logo {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .mobile-logo i {
+        font-size: 1.6rem;
+    }
+    
+    .form-header {
+        margin-bottom: 25px;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-header p {
+        font-size: 0.9rem;
+    }
+    
+    .login-form {
+        gap: 16px;
+    }
+    
+    .input-group label {
+        font-size: 0.85rem;
+    }
+    
+    .input-wrapper input {
+        padding: 14px 14px 14px 45px;
+        font-size: 0.95rem;
+        border-radius: var(--radius-sm);
+    }
+    
+    .input-icon {
+        left: 15px;
+        font-size: 0.95rem;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .checkbox-wrapper {
+        font-size: 0.85rem;
+    }
+    
+    .forgot-link {
+        align-self: flex-end;
+        font-size: 0.85rem;
+    }
+    
+    .login-btn {
+        padding: 14px 25px;
+        font-size: 0.95rem;
+        border-radius: var(--radius-sm);
+    }
+    
+    .divider {
+        margin: 8px 0;
+    }
+    
+    .divider span {
+        font-size: 0.8rem;
+    }
+    
+    .social-login {
+        flex-direction: row;
+        gap: 8px;
+    }
+    
+    .social-btn {
+        padding: 12px 10px;
+        border-radius: var(--radius-sm);
+    }
+    
+    .social-btn i {
+        font-size: 1.2rem;
+    }
+    
+    .signup-text {
+        font-size: 0.9rem;
+    }
+    
+    .back-home {
+        margin-top: 20px;
+        font-size: 0.85rem;
+    }
+    
+    .login-footer {
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .footer-links a {
+        font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+   Responsive Design - Small Mobile (320px - 479px)
+======================================== */
+@media (max-width: 479px) {
+    .login-page {
+        padding: 10px;
+        padding-top: 15px;
+        padding-bottom: 60px;
+    }
+    
+    .login-container {
+        border-radius: var(--radius-sm);
+    }
+    
+    .form-panel {
+        padding: 25px 20px;
+    }
+    
+    .mobile-logo {
+        font-size: 1.3rem;
+        gap: 8px;
+        margin-bottom: 18px;
+    }
+    
+    .mobile-logo i {
+        font-size: 1.4rem;
+    }
+    
+    .form-header {
+        margin-bottom: 20px;
+    }
+    
+    .form-header h2 {
+        font-size: 1.35rem;
+    }
+    
+    .form-header p {
+        font-size: 0.85rem;
+    }
+    
+    .login-form {
+        gap: 14px;
+    }
+    
+    .input-group {
+        gap: 6px;
+    }
+    
+    .input-group label {
+        font-size: 0.8rem;
+    }
+    
+    .input-wrapper input {
+        padding: 12px 12px 12px 42px;
+        font-size: 0.9rem;
+    }
+    
+    .input-icon {
+        left: 14px;
+        font-size: 0.9rem;
+    }
+    
+    .checkmark {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .checkbox-label {
+        font-size: 0.8rem;
+    }
+    
+    .forgot-link {
+        font-size: 0.8rem;
+    }
+    
+    .login-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-icon {
+        font-size: 0.9rem;
+    }
+    
+    .social-btn {
+        padding: 11px 8px;
+    }
+    
+    .social-btn i {
+        font-size: 1.1rem;
+    }
+    
+    .signup-text {
+        font-size: 0.85rem;
+    }
+    
+    .back-home {
+        margin-top: 18px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+   Responsive Design - Extra Small Mobile (below 320px)
+======================================== */
+@media (max-width: 319px) {
+    .login-page {
+        padding: 8px;
+    }
+    
+    .form-panel {
+        padding: 20px 15px;
+    }
+    
+    .mobile-logo {
+        font-size: 1.2rem;
+    }
+    
+    .mobile-logo i {
+        font-size: 1.3rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-header p {
+        font-size: 0.8rem;
+    }
+    
+    .input-wrapper input {
+        padding: 11px 10px 11px 38px;
+        font-size: 0.85rem;
+    }
+    
+    .input-icon {
+        left: 12px;
+        font-size: 0.85rem;
+    }
+    
+    .login-btn {
+        padding: 11px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .social-btn {
+        padding: 10px 6px;
+    }
+    
+    .social-btn i {
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   Landscape Mode Adjustments
+======================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+    .login-page {
+        padding: 10px 20px;
+        align-items: flex-start;
+    }
+    
+    .login-container {
+        min-height: auto;
+        flex-direction: row;
+    }
+    
+    .brand-panel {
+        display: none;
+    }
+    
+    .form-panel {
+        padding: 25px 35px;
+    }
+    
+    .mobile-logo {
+        display: flex;
+        margin-bottom: 15px;
+    }
+    
+    .form-header {
+        margin-bottom: 15px;
+    }
+    
+    .form-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .login-form {
+        gap: 12px;
+    }
+    
+    .input-wrapper input {
+        padding: 12px 12px 12px 42px;
+    }
+    
+    .form-options {
+        margin: 0;
+    }
+    
+    .login-btn {
+        padding: 12px 25px;
+        margin-top: 5px;
+    }
+    
+    .divider {
+        margin: 5px 0;
+    }
+    
+    .social-login {
+        flex-direction: row;
+    }
+    
+    .social-btn span {
+        display: none;
+    }
+    
+    .signup-text {
+        margin-top: 5px;
+    }
+    
+    .back-home {
+        margin-top: 15px;
+    }
+    
+    .login-footer {
+        position: relative;
+        padding: 10px 20px;
+    }
+}
+
+/* ========================================
+   High DPI / Retina Display Adjustments
+======================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .brand-image img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ========================================
+   Touch Device Optimizations
+======================================== */
+@media (hover: none) and (pointer: coarse) {
+    .login-btn:hover {
+        transform: none;
+    }
+    
+    .login-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .social-btn:hover {
+        transform: none;
+    }
+    
+    .social-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .feature-item:hover {
+        transform: none;
+    }
+    
+    .input-wrapper input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* ========================================
+   Dark Mode Support
+======================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-card: rgba(30, 30, 40, 0.95);
+        --text-dark: #e2e8f0;
+        --text-muted: #a0aec0;
+        --bg-lighter: #2d3748;
+        --border-color: #4a5568;
+    }
+    
+    .form-panel {
+        background: var(--bg-card);
+    }
+    
+    .input-wrapper input {
+        background: var(--bg-lighter);
+        color: var(--text-dark);
+    }
+    
+    .input-wrapper input::placeholder {
+        color: var(--text-muted);
+    }
+    
+    .social-btn {
+        background: var(--bg-lighter);
+        color: var(--text-dark);
+    }
+}
+
+/* ========================================
+   Accessibility & Focus States
+======================================== */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   Reduced Motion Preference
+======================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .bg-shape,
+    .particles span {
+        animation: none;
+    }
+}
+
+/* ========================================
+   Print Styles
+======================================== */
+@media print {
+    .bg-animation,
+    .particles,
+    .brand-panel,
+    .login-footer {
+        display: none;
+    }
+    
+    .login-container {
+        box-shadow: none;
+        background: var(--white);
+    }
+    
+    .form-panel {
+        width: 100%;
+    }
+}

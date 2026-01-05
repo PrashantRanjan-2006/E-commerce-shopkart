@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopKart E-Commerce Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./products.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">=
+        <div class="container">
+            <div class="logo">
+                <a href="INDEX.html">🛒 ShopKart</a>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="products.html" class="active">Products</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="cart-icon" id="cartIcon">
+                <span class="cart-count" id="cartCount">0</span>
+                🛒
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Our Products</h1>
+            <p>Discover amazing deals on top-quality products</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Sidebar - Categories -->
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3>Categories</h3>
+                    <ul class="category-list" id="categoryList">
+                        <!-- Categories will be loaded dynamically -->
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="price-range">
+                        <input type="range" id="priceRange" min="0" max="50000" value="50000">
+                        <div class="price-values">
+                            <span>₹0</span>
+                            <span id="maxPrice">₹50,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Quick Filter</h3>
+                    <div class="quick-filters">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="onSale"> On Sale
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="inStock"> In Stock
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="freeShipping"> Free Shipping
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <button class="btn-clear-filters" onclick="resetFilters()">
+                        🔄 Clear All Filters
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Products Section -->
+            <section class="products-section">
+                <div class="products-header">
+                    <h2>Showing <span id="productCount">0</span> Products</h2>
+                    <div class="sort-options">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name A-Z</option>
+                            <option value="discount">Biggest Discount</option>
+                            <option value="rating">Top Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+
+                <!-- No Products Message -->
+                <div class="no-products" id="noProducts" style="display: none;">
+                    <span class="emoji">😔</span>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your filters or browse all categories</p>
+                    <button class="btn-reset" onclick="resetFilters()">Reset Filters</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message" id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button class="cart-close" onclick="closeCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+        <div class="cart-empty" id="cartEmpty">
+            <span class="empty-icon">🛒</span>
+            <p>Your cart is empty</p>
+            <span class="empty-sub">Add some products to get started!</span>
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-summary">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="subtotal-amount" id="subtotalAmount">₹0.00</span>
+                </div>
+                <div class="cart-discount">
+                    <span>You Save:</span>
+                    <span class="discount-amount" id="discountAmount">₹0.00</span>
+                </div>
+                <div class="cart-delivery">
+                    <span>Delivery:</span>
+                    <span class="delivery-amount">Free</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount" id="totalAmount">₹0.00</span>
+                </div>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+                <span>💳</span> Proceed to Checkout
+            </button>
+            <button class="clear-cart-btn" onclick="clearCart()">
+                🗑️ Clear Cart
+            </button>
+        </div>
+    </aside>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <h2>Checkout</h2>
+                <button class="checkout-modal-close" onclick="closeCheckout()">&times;</button>
+            </div>
+            
+            <div class="checkout-content">
+                <!-- Checkout Steps -->
+                <div class="checkout-steps">
+                    <div class="step active" id="step1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Delivery</span>
+                    </div>
+                    <div class="step" id="step2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Payment</span>
+                    </div>
+                    <div class="step" id="step3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Confirm</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Delivery Information -->
+                <div class="checkout-step-content active" id="delivery-step">
+                    <h3>Delivery Address</h3>
+                    <form class="delivery-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" placeholder="Enter your street address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" placeholder="City" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" placeholder="State" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipcode">Zip Code</label>
+                                <input type="text" id="zipcode" placeholder="Zip code" required>
+                            </div>
+                        </div>
+                        <button type="button" class="next-btn" onclick="goToPayment()">Next: Payment</button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Method -->
+                <div class="checkout-step-content" id="payment-step">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card" checked>
+                            <div class="payment-choice">
+                                <span class="payment-icon">💳</span>
+                                <div class="payment-info">
+                                    <span class="payment-title">Credit/Debit Card</span>
+                                    <span class="payment-desc">Visa, Mastercard, Amex</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="upi">
+                            <div class="payment-choice">
+                                <span class="payment-icon">📱</span>
+                                <div class="payment-info">
+                                    <span class="payment-title">UPI</span>
+                                    <span class="payment-desc">Google Pay, PhonePe, Paytm</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="wallet">
+                            <div class="payment-choice">
+                                <span class="payment-icon">👛</span>
+                                <div class="payment-info">
+                                    <span class="payment-title">Digital Wallet</span>
+                                    <span class="payment-desc">Paytm, MobiKwik, Amazon Pay</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="payment-form" id="cardForm">
+                        <h4>Card Details</h4>
+                        <div class="form-group">
+                            <label for="cardName">Cardholder Name</label>
+                            <input type="text" id="cardName" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-actions">
+                        <button type="button" class="prev-btn" onclick="backToDelivery()">← Back</button>
+                        <button type="button" class="next-btn" onclick="goToConfirm()">Next: Confirm</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Order Confirmation -->
+                <div class="checkout-step-content" id="confirm-step">
+                    <h3>Order Summary</h3>
+                    <div class="order-summary">
+                        <div class="summary-section">
+                            <h4>Delivery Address</h4>
+                            <p id="summaryAddress"></p>
+                        </div>
+                        <div class="summary-section">
+                            <h4>Payment Method</h4>
+                            <p id="summaryPayment"></p>
+                        </div>
+                        <div class="summary-section">
+                            <h4>Order Items</h4>
+                            <div id="summaryItems"></div>
+                        </div>
+                        <div class="summary-section">
+                            <h4>Order Total</h4>
+                            <div class="summary-total">
+                                <div class="total-row">
+                                    <span>Subtotal:</span>
+                                    <span id="summarySubtotal">₹0.00</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>Discount:</span>
+                                    <span id="summaryDiscount">-₹0.00</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>Delivery:</span>
+                                    <span>Free</span>
+                                </div>
+                                <div class="total-row final">
+                                    <span>Total:</span>
+                                    <span id="summaryFinalTotal">₹0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-actions">
+                        <button type="button" class="prev-btn" onclick="backToPayment()">← Back</button>
+                        <button type="button" class="place-order-btn" onclick="placeOrder()">
+                            <span>✓</span> Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ShopKart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global State
+        let products = [];
+        let categories = [];
+        let currentCategory = 'all';
+        let maxPrice = 50000;
+        let showOnSale = false;
+        let showInStock = false;
+        let showFreeShipping = false;
+        let sortBy = 'default';
+        let cart = []; // Array of { product, quantity }
+
+        // Load cart from localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('shopKartCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+                renderCartItems();
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('shopKartCart', JSON.stringify(cart));
+        }
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const productCount = document.getElementById('productCount');
+        const noProducts = document.getElementById('noProducts');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const priceRange = document.getElementById('priceRange');
+        const maxPriceDisplay = document.getElementById('maxPrice');
+        const sortSelect = document.getElementById('sortBy');
+        const categoryList = document.getElementById('categoryList');
+        const cartCount = document.getElementById('cartCount');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // Load products from JSON file
+        async function loadProducts() {
+            try {
+                loadingSpinner.style.display = 'flex';
+                productsGrid.style.display = 'none';
+
+                const response = await fetch('./products.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load products');
+                }
+                
+                const data = await response.json();
+                products = data.products;
+                categories = data.categories;
+
+                // Update category counts
+                updateCategoryCounts();
+                
+                // Render categories
+                renderCategories();
+                
+                // Render products
+                renderProducts();
+
+                loadingSpinner.style.display = 'none';
+            } catch (error) {
+                console.error('Error loading products:', error);
+                loadingSpinner.innerHTML = `
+                    <span class="emoji">❌</span>
+                    <p>Failed to load products. Please try again.</p>
+                    <button class="btn-reset" onclick="loadProducts()">Retry</button>
+                `;
+            }
+        }
+
+        // Update category counts based on actual products
+        function updateCategoryCounts() {
+            const counts = {};
+            counts['all'] = products.length;
+            
+            products.forEach(product => {
+                if (!counts[product.category]) {
+                    counts[product.category] = 0;
+                }
+                counts[product.category]++;
+            });
+
+            categories.forEach(cat => {
+                cat.count = counts[cat.id] || 0;
+            });
+        }
+
+        // Render categories dynamically
+        function renderCategories() {
+            categoryList.innerHTML = categories.map(cat => `
+                <li>
+                    <button class="category-btn ${cat.id === currentCategory ? 'active' : ''}" 
+                            data-category="${cat.id}"
+                            onclick="filterByCategory('${cat.id}')">
+                        <span class="icon">${cat.icon}</span> ${cat.name}
+                        <span class="count">${cat.count}</span>
+                    </button>
+                </li>
+            `).join('');
+        }
+
+        // Filter by category
+        function filterByCategory(categoryId) {
+            currentCategory = categoryId;
+            
+            // Update active state
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === categoryId) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderProducts();
+        }
+
+        // Render Products
+        // Enhanced Product Renderer - PREVENTS IMAGE/NAME MISMATCH
+        function renderProducts() {
+            let filteredProducts = products.filter(product => {
+                // Category filter
+                if (currentCategory !== 'all' && product.category !== currentCategory) {
+                    return false;
+                }
+                // Price filter
+                if (product.discountPrice > maxPrice) {
+                    return false;
+                }
+                // On Sale filter
+                if (showOnSale && product.discount === 0) {
+                    return false;
+                }
+                // In Stock filter
+                if (showInStock && !product.inStock) {
+                    return false;
+                }
+                // Free Shipping filter
+                if (showFreeShipping && !product.freeShipping) {
+                    return false;
+                }
+                return true;
+            });
+
+            // Sort products
+            switch (sortBy) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.discountPrice - b.discountPrice);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.discountPrice - a.discountPrice);
+                    break;
+                case 'name':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'discount':
+                    filteredProducts.sort((a, b) => b.discount - a.discount);
+                    break;
+                case 'rating':
+                    filteredProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+
+            // Update count
+            productCount.textContent = filteredProducts.length;
+
+            // Show/hide no products message
+            if (filteredProducts.length === 0) {
+                productsGrid.style.display = 'none';
+                noProducts.style.display = 'flex';
+            } else {
+                productsGrid.style.display = 'grid';
+                noProducts.style.display = 'none';
+            }
+
+            // Render product cards with staggered animation
+            // KEY: Each product card contains ALL product info in a single container
+            productsGrid.innerHTML = filteredProducts.map((product, index) => {
+                const productId = `product-${product.id}`;
+                const imageSrc = product.image || 'https://via.placeholder.com/400x400?text=No+Image';
+                const placeholderSrc = `https://via.placeholder.com/400x400?text=${encodeURIComponent(product.name)}`;
+                
+                return `
+                <div class="product-card" 
+                     data-product-id="${product.id}" 
+                     data-category="${product.category}" 
+                     data-product-name="${product.name}"
+                     style="animation-delay: ${index * 0.05}s">
+                    
+                    <!-- IMAGE SECTION - Linked to Product ID -->
+                    <div class="product-image" data-image-for="${productId}">
+                        <img 
+                            src="${imageSrc}" 
+                            alt="${product.name}" 
+                            title="${product.name}"
+                            loading="eager" 
+                            data-product-id="${product.id}"
+                            onerror="this.src='${placeholderSrc}'"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                        
+                        ${product.discount > 0 ? `<span class="discount-badge" data-badge="discount">-${product.discount}%</span>` : ''}
+                        ${!product.inStock ? '<span class="stock-badge out" data-badge="stock">Out of Stock</span>' : ''}
+                        ${product.freeShipping ? '<span class="shipping-badge" data-badge="shipping">🚚 Free Shipping</span>' : ''}
+                        
+                        <div class="product-actions">
+                            <button class="action-btn" title="Add to Wishlist" onclick="addToWishlist(${product.id})" data-action="wishlist">
+                                <span>❤️</span>
+                            </button>
+                            <button class="action-btn" title="Quick View" onclick="quickView(${product.id})" data-action="quickview">
+                                <span>👁️</span>
+                            </button>
+                            <button class="action-btn" title="Compare" onclick="addToCompare(${product.id})" data-action="compare">
+                                <span>⚖️</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- INFO SECTION - Same Container as Image -->
+                    <div class="product-info" data-info-for="${productId}">
+                        <span class="product-category" data-product-id="${product.id}">
+                            ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                        </span>
+                        
+                        <!-- PRODUCT NAME - Explicitly linked to Product ID -->
+                        <h3 class="product-name" 
+                            data-product-id="${product.id}" 
+                            data-product-name="${product.name}"
+                            title="${product.name}">
+                            ${product.name}
+                        </h3>
+                        
+                        <p class="product-description" data-product-id="${product.id}">
+                            ${product.description}
+                        </p>
+                        
+                        <div class="product-rating" data-product-id="${product.id}">
+                            <div class="stars">${generateStars(product.rating)}</div>
+                            <span class="rating-value">${product.rating}</span>
+                            <span class="review-count">(${product.reviews} reviews)</span>
+                        </div>
+                        
+                        <!-- PRICING SECTION - Same Container -->
+                        <div class="product-pricing" data-product-id="${product.id}">
+                            <span class="current-price" data-price="current">₹${product.discountPrice.toLocaleString('en-IN')}</span>
+                            ${product.discount > 0 ? `<span class="original-price" data-price="original">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                            ${product.discount > 0 ? `<span class="save-amount" data-price="save">Save ₹${(product.originalPrice - product.discountPrice).toLocaleString('en-IN')}</span>` : ''}
+                        </div>
+                        
+                        <!-- CTA BUTTON - Same Container -->
+                        <button class="add-to-cart-btn" 
+                                data-product-id="${product.id}"
+                                ${!product.inStock ? 'disabled' : ''} 
+                                onclick="addToCart(${product.id})">
+                            ${product.inStock ? '<span class="btn-icon">🛒</span> Add to Cart' : '❌ Out of Stock'}
+                        </button>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        // Generate star rating with filled and empty stars
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<span class="star filled">★</span>';
+            }
+            if (hasHalfStar) {
+                stars += '<span class="star half">★</span>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<span class="star empty">★</span>';
+            }
+            return stars;
+        }
+
+        // Add to cart function
+        function addToCart(productId, qty = 1) {
+            const product = products.find(p => p.id === productId);
+            if (product && product.inStock) {
+                const existingItem = cart.find(item => item.product.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += qty;
+                } else {
+                    cart.push({ product, quantity: qty });
+                }
+                
+                updateCartCount();
+                renderCartItems();
+                saveCartToStorage();
+                showToast(`${product.name} added to cart!`);
+                
+                // Add animation to cart icon
+                const cartIcon = document.getElementById('cartIcon');
+                cartIcon.classList.add('bounce');
+                setTimeout(() => cartIcon.classList.remove('bounce'), 500);
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.product.id !== productId);
+            updateCartCount();
+            renderCartItems();
+            saveCartToStorage();
+            showToast('Item removed from cart!');
+        }
+
+        // Update item quantity in cart
+        function updateCartItemQty(productId, change) {
+            const item = cart.find(item => item.product.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    renderCartItems();
+                    saveCartToStorage();
+                }
+            }
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.classList.add('pulse');
+            setTimeout(() => cartCount.classList.remove('pulse'), 300);
+        }
+
+        // Render cart items
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartEmpty = document.getElementById('cartEmpty');
+            const cartFooter = document.getElementById('cartFooter');
+
+            if (cart.length === 0) {
+                cartItemsContainer.style.display = 'none';
+                cartEmpty.style.display = 'flex';
+                cartFooter.style.display = 'none';
+                return;
+            }
+
+            cartItemsContainer.style.display = 'block';
+            cartEmpty.style.display = 'none';
+            cartFooter.style.display = 'block';
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.product.image}" alt="${item.product.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-name">${item.product.name}</h4>
+                        <p class="cart-item-price">₹${item.product.discountPrice.toLocaleString('en-IN')}</p>
+                        <div class="cart-item-qty">
+                            <button onclick="updateCartItemQty(${item.product.id}, -1)">−</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateCartItemQty(${item.product.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${item.product.id})">&times;</button>
+                </div>
+            `).join('');
+
+            // Calculate totals
+            let subtotal = 0;
+            let totalSaved = 0;
+            cart.forEach(item => {
+                subtotal += item.product.discountPrice * item.quantity;
+                totalSaved += (item.product.originalPrice - item.product.discountPrice) * item.quantity;
+            });
+
+            document.getElementById('subtotalAmount').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+            document.getElementById('discountAmount').textContent = `₹${totalSaved.toLocaleString('en-IN')}`;
+            document.getElementById('totalAmount').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+        }
+
+        // Open cart sidebar
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close cart sidebar
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Clear entire cart
+        function clearCart() {
+            cart = [];
+            updateCartCount();
+            renderCartItems();
+            saveCartToStorage();
+            showToast('Cart cleared! 🗑️');
+        }
+
+        // Proceed to Checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty! 🛒');
+                return;
+            }
+            closeCart();
+            openCheckout();
+        }
+
+        // Open Checkout Modal
+        function openCheckout() {
+            const modal = document.getElementById('checkoutModal');
+            const overlay = document.getElementById('checkoutOverlay');
+            modal.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Checkout Modal
+        function closeCheckout() {
+            const modal = document.getElementById('checkoutModal');
+            const overlay = document.getElementById('checkoutOverlay');
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            resetCheckoutForm();
+        }
+
+        // Reset Checkout Form
+        function resetCheckoutForm() {
+            document.querySelectorAll('.checkout-step-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('delivery-step').classList.add('active');
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+        }
+
+        // Go to Payment Step
+        function goToPayment() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const zipcode = document.getElementById('zipcode').value;
+
+            if (!fullName || !email || !phone || !address || !city || !state || !zipcode) {
+                showToast('Please fill all fields! ⚠️');
+                return;
+            }
+
+            // Save delivery info
+            window.deliveryInfo = { fullName, email, phone, address, city, state, zipcode };
+
+            document.getElementById('delivery-step').classList.remove('active');
+            document.getElementById('payment-step').classList.add('active');
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+
+        // Back to Delivery
+        function backToDelivery() {
+            document.getElementById('payment-step').classList.remove('active');
+            document.getElementById('delivery-step').classList.add('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+        }
+
+        // Go to Confirm
+        function goToConfirm() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            if (paymentMethod === 'card') {
+                const cardName = document.getElementById('cardName').value;
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiry = document.getElementById('expiry').value;
+                const cvv = document.getElementById('cvv').value;
+
+                if (!cardName || !cardNumber || !expiry || !cvv) {
+                    showToast('Please fill card details! ⚠️');
+                    return;
+                }
+            }
+
+            // Save payment info
+            window.paymentMethod = paymentMethod;
+
+            // Update summary
+            const addr = window.deliveryInfo;
+            document.getElementById('summaryAddress').innerHTML = 
+                `${addr.fullName}<br>${addr.address}<br>${addr.city}, ${addr.state} ${addr.zipcode}<br>${addr.email} | ${addr.phone}`;
+
+            const paymentLabels = {
+                'card': '💳 Credit/Debit Card',
+                'upi': '📱 UPI',
+                'wallet': '👛 Digital Wallet'
+            };
+            document.getElementById('summaryPayment').textContent = paymentLabels[paymentMethod];
+
+            // Show cart items summary
+            let itemsHTML = '';
+            cart.forEach(item => {
+                itemsHTML += `<div class="summary-item"><span>${item.name} x${item.quantity}</span><span>₹${(item.discountPrice * item.quantity).toLocaleString('en-IN')}</span></div>`;
+            });
+            document.getElementById('summaryItems').innerHTML = itemsHTML;
+
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.discountPrice * item.quantity), 0);
+            const discount = cart.reduce((sum, item) => sum + ((item.originalPrice - item.discountPrice) * item.quantity), 0);
+
+            document.getElementById('summarySubtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
+            document.getElementById('summaryDiscount').textContent = '-₹' + discount.toLocaleString('en-IN');
+            document.getElementById('summaryFinalTotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
+
+            document.getElementById('payment-step').classList.remove('active');
+            document.getElementById('confirm-step').classList.add('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+        }
+
+        // Back to Payment
+        function backToPayment() {
+            document.getElementById('confirm-step').classList.remove('active');
+            document.getElementById('payment-step').classList.add('active');
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+
+        // Place Order
+        function placeOrder() {
+            const orderNumber = 'ORD' + Date.now();
+            showToast(`Order placed successfully! Order #${orderNumber} 🎉`);
+            
+            setTimeout(() => {
+                cart = [];
+                updateCartCount();
+                renderCartItems();
+                saveCartToStorage();
+                closeCheckout();
+            }, 2000);
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Quick view modal
+        function quickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const modalBody = document.getElementById('modalBody');
+                modalBody.innerHTML = `
+                    <div class="modal-product">
+                        <div class="modal-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            ${product.discount > 0 ? `<span class="discount-badge">-${product.discount}%</span>` : ''}
+                        </div>
+                        <div class="modal-details">
+                            <span class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</span>
+                            <h2>${product.name}</h2>
+                            <div class="product-rating">
+                                <div class="stars">${generateStars(product.rating)}</div>
+                                <span class="rating-value">${product.rating}</span>
+                                <span class="review-count">(${product.reviews} reviews)</span>
+                            </div>
+                            <p class="modal-description">${product.description}</p>
+                            <div class="product-pricing">
+                                <span class="current-price">₹${product.discountPrice.toLocaleString('en-IN')}</span>
+                                ${product.discount > 0 ? `<span class="original-price">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                            </div>
+                            <div class="modal-features">
+                                <span class="${product.inStock ? 'in-stock' : 'out-of-stock'}">
+                                    ${product.inStock ? '✓ In Stock' : '✗ Out of Stock'}
+                                </span>
+                                ${product.freeShipping ? '<span class="free-ship">🚚 Free Shipping</span>' : ''}
+                            </div>
+                            <div class="modal-actions">
+                                <div class="quantity-selector">
+                                    <button onclick="decreaseQty()">−</button>
+                                    <input type="number" id="qty" value="1" min="1" max="10">
+                                    <button onclick="increaseQty()">+</button>
+                                </div>
+                                <button class="add-to-cart-btn modal-cart-btn" ${!product.inStock ? 'disabled' : ''} onclick="addToCartFromModal(${product.id});">
+                                    ${product.inStock ? '🛒 Add to Cart' : '❌ Out of Stock'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('quickViewModal').classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('quickViewModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Quantity selectors
+        function increaseQty() {
+            const qty = document.getElementById('qty');
+            if (qty.value < 10) qty.value = parseInt(qty.value) + 1;
+        }
+
+        function decreaseQty() {
+            const qty = document.getElementById('qty');
+            if (qty.value > 1) qty.value = parseInt(qty.value) - 1;
+        }
+
+        // Add to wishlist
+        function addToWishlist(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                showToast(`${product.name} added to wishlist! ❤️`);
+            }
+        }
+
+        // Add to compare
+        function addToCompare(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                showToast(`${product.name} added to compare! ⚖️`);
+            }
+        }
+
+        // Add to cart from modal with quantity
+        function addToCartFromModal(productId) {
+            const qty = parseInt(document.getElementById('qty').value) || 1;
+            addToCart(productId, qty);
+            closeModal();
+        }
+
+        // Reset filters
+        function resetFilters() {
+            currentCategory = 'all';
+            maxPrice = 50000;
+            showOnSale = false;
+            showInStock = false;
+            showFreeShipping = false;
+            sortBy = 'default';
+
+            // Reset UI
+            priceRange.value = 50000;
+            maxPriceDisplay.textContent = '₹50,000';
+            sortSelect.value = 'default';
+            document.getElementById('onSale').checked = false;
+            document.getElementById('inStock').checked = false;
+            document.getElementById('freeShipping').checked = false;
+
+            // Reset category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderProducts();
+            showToast('Filters cleared! 🔄');
+        }
+
+        // Event Listeners
+        priceRange.addEventListener('input', (e) => {
+            maxPrice = parseInt(e.target.value);
+            maxPriceDisplay.textContent = `₹${maxPrice.toLocaleString('en-IN')}`;
+            renderProducts();
+        });
+
+        // Cart icon click handler
+        document.getElementById('cartIcon').addEventListener('click', openCart);
+
+        sortSelect.addEventListener('change', (e) => {
+            sortBy = e.target.value;
+            renderProducts();
+        });
+
+        document.getElementById('onSale').addEventListener('change', (e) => {
+            showOnSale = e.target.checked;
+            renderProducts();
+        });
+
+        document.getElementById('inStock').addEventListener('change', (e) => {
+            showInStock = e.target.checked;
+            renderProducts();
+        });
+
+        document.getElementById('freeShipping').addEventListener('change', (e) => {
+            showFreeShipping = e.target.checked;
+            renderProducts();
+        });
+
+        // Close modal on overlay click
+        document.getElementById('quickViewModal').addEventListener('click', (e) => {
+            if (e.target.id === 'quickViewModal') {
+                closeModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            loadCartFromStorage();
+        });
+    </script>
+</body>
+</html>

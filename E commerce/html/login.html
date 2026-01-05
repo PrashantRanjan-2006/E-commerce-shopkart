@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ShopKart | Your Favorite E-Commerce Store</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <!-- ========================================
+         Animated Background Shapes
+    ======================================== -->
+    <div class="bg-animation">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+        <div class="bg-shape bg-shape-4"></div>
+    </div>
+
+    <!-- ========================================
+         Floating Particles Effect
+    ======================================== -->
+    <div class="particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span>
+    </div>
+
+    <!-- ========================================
+         Main Login Container
+    ======================================== -->
+    <main class="login-page">
+        <div class="login-container">
+            
+            <!-- ========================================
+                 Left Panel - Brand Information
+            ======================================== -->
+            <aside class="brand-panel">
+                <div class="brand-content">
+                    <!-- Logo Section -->
+                    <div class="brand-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h1 class="logo-text">ShopKart</h1>
+                    </div>
+                    
+                    <!-- Tagline -->
+                    <p class="brand-tagline">
+                        Your one-stop destination for amazing products at unbeatable prices.
+                    </p>
+                    
+                    <!-- Feature List -->
+                    <ul class="brand-features">
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-truck-fast"></i></span>
+                            <div class="feature-text">
+                                <strong>Free & Fast Delivery</strong>
+                                <span>On orders above ₹499</span>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-shield-halved"></i></span>
+                            <div class="feature-text">
+                                <strong>100% Secure Payments</strong>
+                                <span>All major cards accepted</span>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-rotate-left"></i></span>
+                            <div class="feature-text">
+                                <strong>Easy Returns</strong>
+                                <span>7-day return policy</span>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-headset"></i></span>
+                            <div class="feature-text">
+                                <strong>24/7 Support</strong>
+                                <span>We're here to help</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <!-- Stats Section -->
+                    <div class="brand-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Products</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Customers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4.8<i class="fas fa-star"></i></span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Decorative Image -->
+                <div class="brand-image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="Shopping Experience">
+                </div>
+            </aside>
+
+            <!-- ========================================
+                 Right Panel - Login Form
+            ======================================== -->
+            <section class="form-panel">
+                <div class="form-wrapper">
+                    <!-- Mobile Logo (visible on small screens) -->
+                    <div class="mobile-logo">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>ShopKart</span>
+                    </div>
+                    
+                    <!-- Form Header -->
+                    <header class="form-header">
+                        <h2>Welcome Back!</h2>
+                        <p>Please sign in to continue shopping</p>
+                    </header>
+
+                    <!-- Login Form - Links directly to products page -->
+                    <form action="products.html" method="get" class="login-form">
+                        <!-- Email Input -->
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="Enter your email"
+                                    required
+                                    autocomplete="email"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Enter your password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="form-options">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" id="remember" name="remember">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-link">Forgot Password?</a>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" class="login-btn">
+                            <span class="btn-text">Sign In</span>
+                            <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                        </button>
+
+                        <!-- Divider -->
+                        <div class="divider">
+                            <span>or continue with</span>
+                        </div>
+
+                        <!-- Social Login Buttons -->
+                        <div class="social-login">
+                            <a href="products.html" class="social-btn google">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </a>
+                            <a href="products.html" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="products.html" class="social-btn apple">
+                                <i class="fab fa-apple"></i>
+                                <span>Apple</span>
+                            </a>
+                        </div>
+
+                        <!-- Sign Up Link -->
+                        <p class="signup-text">
+                            Don't have an account? 
+                            <a href="signup.html" class="signup-link">Create Account</a>
+                        </p>
+                    </form>
+
+                    <!-- Back to Home -->
+                    <a href="index.html" class="back-home">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Home</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ========================================
+         Footer
+    ======================================== -->
+    <footer class="login-footer">
+        <p>&copy; 2026 ShopKart. All rights reserved.</p>
+        <nav class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Help</a>
+        </nav>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,649 @@
+/* ========================================
+   E-Commerce Welcome Page Styles
+   Beautiful & Modern Design
+======================================== */
+
+/* CSS Variables for easy customization */
+:root {
+    --primary-color: #1b8469;
+    --secondary-color: #543c60;
+    --accent-color: #880755;
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+    --text-light: #a0aec0;
+    --white: #ffffff;
+    --bg-light: #f6f8fb;
+    --bg-lighter: #e9ecf3;
+    --shadow-color: rgba(102, 126, 234, 0.4);
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.4s ease;
+}
+body::-webkit-scrollbar{
+    scrollbar-width: none;
+}
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2029&q=80') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Gradient Overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg, 
+        rgba(102, 126, 234, 0.85) 0%, 
+        rgba(118, 75, 162, 0.85) 50%, 
+        rgba(255, 107, 107, 0.7) 100%
+    );
+    z-index: 1;
+}
+
+/* ========================================
+   Main Container
+======================================== */
+.welcome-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 60px 80px;
+    border-radius: 30px;
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    max-width: 580px;
+    animation: fadeInUp 1s ease-out, glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 
+            0 25px 80px rgba(0, 0, 0, 0.35),
+            0 0 30px rgba(102, 126, 234, 0.2);
+    }
+    to {
+        box-shadow: 
+            0 25px 80px rgba(0, 0, 0, 0.35),
+            0 0 50px rgba(102, 126, 234, 0.3);
+    }
+}
+
+/* ========================================
+   Logo Styles
+======================================== */
+.logo {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+        0 15px 40px var(--shadow-color),
+        inset 0 -3px 10px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite, rotate 20s linear infinite;
+    position: relative;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+    border-radius: 50%;
+    z-index: -1;
+    animation: spin 3s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.logo svg {
+    width: 45px;
+    height: 45px;
+    fill: var(--white);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ========================================
+   Typography
+======================================== */
+h1 {
+    color: var(--text-dark);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    letter-spacing: -0.5px;
+    animation: shimmer 3s ease-in-out infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    line-height: 1.7;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========================================
+   Features Section
+======================================== */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 40px;
+}
+
+.feature {
+    text-align: center;
+    cursor: pointer;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 12px;
+    transition: all var(--transition-fast);
+    box-shadow: 
+        5px 5px 15px rgba(0, 0, 0, 0.08),
+        -5px -5px 15px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: left 0.5s ease;
+}
+
+.feature:hover .feature-icon::before {
+    left: 100%;
+}
+
+.feature:hover .feature-icon {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 
+        0 15px 35px rgba(102, 126, 234, 0.25),
+        -5px -5px 15px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.feature:hover .feature-icon svg {
+    fill: var(--white);
+    transform: scale(1.1);
+}
+
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--primary-color);
+    transition: all var(--transition-fast);
+}
+
+.feature span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.feature:hover span {
+    color: var(--primary-color);
+}
+
+/* ========================================
+   Button Styles
+======================================== */
+.btn {
+    display: inline-block;
+    padding: 18px 55px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+    background-size: 200% 200%;
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    transition: all var(--transition-medium);
+    box-shadow: 
+        0 12px 40px var(--shadow-color),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(102, 126, 234, 0.5),
+        0 0 20px rgba(255, 107, 107, 0.3);
+    background-position: 100% 0;
+}
+
+.btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* ========================================
+   Divider
+======================================== */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 35px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bg-lighter), transparent);
+    border-radius: 2px;
+}
+
+.divider span {
+    padding: 0 20px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   Social Links
+======================================== */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    box-shadow: 
+        5px 5px 15px rgba(0, 0, 0, 0.08),
+        -5px -5px 15px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    border-radius: 50%;
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.social-link:hover {
+    transform: translateY(-5px) rotate(10deg);
+    box-shadow: 0 12px 30px var(--shadow-color);
+}
+
+.social-link svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--primary-color);
+    transition: all var(--transition-fast);
+    position: relative;
+    z-index: 1;
+}
+
+.social-link:hover svg {
+    fill: var(--white);
+    transform: scale(1.15);
+}
+
+/* ========================================
+   Floating Particles
+======================================== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 15s infinite;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 20s; width: 15px; height: 15px; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 25s; width: 8px; height: 8px; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 18s; width: 12px; height: 12px; }
+.particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 22s; width: 10px; height: 10px; }
+.particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 19s; width: 14px; height: 14px; }
+.particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 24s; width: 8px; height: 8px; }
+.particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 21s; width: 11px; height: 11px; }
+.particle:nth-child(8) { left: 80%; animation-delay: 1.5s; animation-duration: 17s; width: 16px; height: 16px; }
+.particle:nth-child(9) { left: 90%; animation-delay: 4.5s; animation-duration: 23s; width: 9px; height: 9px; }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(0vh) scale(1) rotate(180deg);
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   Decorative Elements
+======================================== */
+.decoration {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+}
+
+.decoration-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+    animation: floatDecor 8s ease-in-out infinite;
+}
+
+.decoration-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: -100px;
+    animation: floatDecor 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatDecor {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(20px, 20px) rotate(10deg);
+    }
+}
+
+/* ========================================
+   Responsive Design
+======================================== */
+@media (max-width: 768px) {
+    .welcome-container {
+        padding: 50px 40px;
+        margin: 20px;
+        border-radius: 25px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .features {
+        gap: 25px;
+    }
+    
+    .feature-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .btn {
+        padding: 16px 45px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .welcome-container {
+        padding: 40px 25px;
+        margin: 15px;
+    }
+    
+    .logo {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .logo svg {
+        width: 38px;
+        height: 38px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+    
+    .features {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .feature-icon {
+        margin: 0;
+    }
+    
+    .btn {
+        padding: 14px 35px;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .social-link svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .welcome-container {
+        padding: 35px 20px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ========================================
+   Accessibility & Reduced Motion
+======================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus States for Accessibility */
+.btn:focus,
+.social-link:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* ========================================
+   Print Styles
+======================================== */
+@media print {
+    body::before,
+    .particles {
+        display: none;
+    }
+    
+    .welcome-container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
